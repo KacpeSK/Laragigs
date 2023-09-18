@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\ListingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Listing;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,18 +15,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+//  All listings
+Route::get('/', [ListingController::class, 'index']);
+// Just one listing depending on search query
 
-Route::get('/', function () {
-    return view('listings', [
-        'heading' => 'Latest Listings',
-        'listings' => [[
-            'id' => 1,
-            'title' => 'Listing One',
-            'Description' => 'Dummy text Dummy text Dummy text Dummy text Dummy text Dummy text Dummy text Dummy text Dummy text Dummy text Dummy text Dummy text Dummy text '
-        ],
-        [   'id' => 2,
-            'title' => 'Listing One',
-            'Description' => 'Dummy text Dummy text Dummy text Dummy text Dummy text Dummy text Dummy text Dummy text Dummy text Dummy text Dummy text Dummy text Dummy text '
-        ]]
-    ]);
-});
+Route::get('/listing/{listing}', [ListingController::class, 'show']);
