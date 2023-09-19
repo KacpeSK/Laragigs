@@ -17,6 +17,17 @@ use App\Models\Listing;
 */
 //  All listings
 Route::get('/', [ListingController::class, 'index']);
-// Just one listing depending on search query
 
-Route::get('/listing/{listing}', [ListingController::class, 'show']);
+// Show create form
+Route::get('/listings/create', [ListingController::class, 'create']);
+
+// Store Listing Data
+Route::post('/listings', [ListingController::class, 'store']);
+
+
+// Just one listing depending on search query // has to be below other /listings routes because otherwise it will trigger before the other listing/ routes and may couse 404
+Route::get('/listings/{listing}', [ListingController::class, 'show']);
+
+
+
+
