@@ -9,6 +9,8 @@ class Listing extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['title', 'logo', 'company', 'location', 'website', 'email', 'description', 'tags'];
+
     public function scopeFilter($query, array $filters) {
         if ($filters['tag'] ?? false) {
             // we are doing a query (sql) where we compare tags with request('tag') and we return all items where tags are alike (like)
