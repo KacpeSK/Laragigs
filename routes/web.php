@@ -34,20 +34,23 @@ Route::put('listings/{listing}', [ListingController::class, 'update'])->middlewa
 // Delete Listing
 Route::delete('listings/{listing}', [ListingController::class, 'destroy'])->middleware('auth');
 
+// Manage Listings
+Route::get('/listings/manage', [ListingController::class, 'manage'])->middleware('auth');
+
 // Just one listing depending on search query // has to be below other /listings routes because otherwise it will trigger before the other listing/ routes and may couse 404
-Route::get('/listings/{listing}', [ListingController::class, 'show'])->middleware('guest');
+Route::get('/listings/{listing}', [ListingController::class, 'show']);
 
 // Show Register/Create Form
-Route::get('/register', [UserController::class, 'create'])->middleware('auth');
+Route::get('/register', [UserController::class, 'create'])->middleware('guest');
 
 // Create New User
-Route::post('/users', [UserController::class, 'store'])->middleware('auth');
+Route::post('/users', [UserController::class, 'store']);
 
 // Log Out User
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 
 // Show Login Form
-Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('auth');
+Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
 
 // Log In User
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
